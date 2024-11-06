@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "12348027969",
+    "project_id": "social-media-feed-2f8df",
+    "storage_bucket": "social-media-feed-2f8df.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:12348027969:android:cbcd65c96a767e8cd482c0",
+        "android_client_info": {
+          "package_name": "com.harshRajpurohit.social_media_feed"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXEIij9SSkWL3wktXc1WnuS_oo6o5kGyE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
