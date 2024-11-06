@@ -6,7 +6,7 @@ import '../../../global.dart';
 import '../../../service/pref.dart';
 import '../../../theme/cubit/theme_cubit.dart';
 import '../../../widget/logo.dart';
-import '../data/cubit/auth_cubit.dart';
+import '../cubit/auth_cubit.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});

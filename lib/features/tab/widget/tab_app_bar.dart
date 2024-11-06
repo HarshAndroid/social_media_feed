@@ -17,7 +17,7 @@ class TabAppBar extends StatelessWidget implements PreferredSizeWidget {
           onTap: () {
             context.read<ThemeCubit>().changeTheme();
           },
-          child: const Logo(height: 35)),
+          child: const Logo(height: 30)),
 
       //
       const Text('Profile'),

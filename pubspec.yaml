@@ -25,10 +25,14 @@ dependencies:
   # For accessing cloud firestore database
   cloud_firestore: ^5.4.4
   
+  # Firebase Pagination
+  firebase_pagination: ^4.0.1
+
   # Bloc (State Management)
   bloc: ^8.1.4
   flutter_bloc: ^8.1.6
   shared_preferences: ^2.3.2
+
   
 dev_dependencies:
   flutter_test:

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../global.dart';
-import '../../../service/auth_service.dart';
+import '../../auth/service/auth_service.dart';
 import '../../../widget/logo.dart';
 import '../../auth/screen/auth_screen.dart';
 import '../../tab/screen/tab.dart';

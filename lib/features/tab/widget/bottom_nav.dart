@@ -10,6 +10,7 @@ class BottomNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
+      //curve shape for fab
       shape: const AutomaticNotchedShape(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -18,6 +19,8 @@ class BottomNav extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(15)),
         ),
       ),
+
+      //navigation bar
       child: BlocSelector<TabCubit, TabState, int>(
         selector: (state) => state.bottomNavIndex,
         builder: (context, state) {
@@ -25,9 +28,9 @@ class BottomNav extends StatelessWidget {
               backgroundColor: Colors.transparent,
               elevation: 0,
               selectedIndex: state,
-              onDestinationSelected: (i) {
-                context.read<TabCubit>().changeBottomNavIndex(i);
-              },
+              animationDuration: const Duration(seconds: 1),
+              onDestinationSelected:
+                  context.read<TabCubit>().changeBottomNavIndex,
               destinations: const [
                 //feed
                 NavigationDestination(

@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../service/dialog_x.dart';
-import '../../../../../service/pref.dart';
-import '../../../../service/auth_service.dart';
-import '../../../tab/screen/tab.dart';
+import '../../../../service/dialog_x.dart';
+import '../../../../service/pref.dart';
+import '../service/auth_service.dart';
+import '../../tab/screen/tab.dart';
 
 part 'auth_state.dart';
 
