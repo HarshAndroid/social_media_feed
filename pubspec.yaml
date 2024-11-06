@@ -28,10 +28,8 @@ dependencies:
   # Bloc (State Management)
   bloc: ^8.1.4
   flutter_bloc: ^8.1.6
+  shared_preferences: ^2.3.2
   
-  # Login UI
-  flutter_login: ^5.0.0
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -41,3 +39,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  # App Assets
+  assets:
+    - assets/

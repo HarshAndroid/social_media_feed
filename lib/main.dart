@@ -1,48 +1,72 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'features/auth/data/cubit/auth_cubit.dart';
+import 'features/tab/cubit/tab_cubit.dart';
+import 'firebase_options.dart';
 
 import 'features/splash/screen/splash.dart';
-
-//global object for accessing device screen size
-late Size mq;
+import 'global.dart';
+import 'service/dialog_x.dart';
+import 'service/pref.dart';
+import 'theme/cubit/theme_cubit.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  //enter full-screen
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+  await Pref.initializeDB();
 
   await _initializeFirebase();
 
+  //enter full-screen
+  await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+
   //for setting orientation to portrait only
-  SystemChrome.setPreferredOrientations(
+  await SystemChrome.setPreferredOrientations(
           [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])
       .then((value) {
     runApp(const MyApp());
   });
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final _themeCubit = ThemeCubit();
+
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        // theme: ThemeData(
-        //     useMaterial3: false,
-        //     appBarTheme: const AppBarTheme(
-        //       centerTitle: true,
-        //       elevation: 1,
-        //       iconTheme: IconThemeData(color: Colors.black),
-        //       titleTextStyle: TextStyle(
-        //           color: Colors.black,
-        //           fontWeight: FontWeight.normal,
-        //           fontSize: 19),
-        //       backgroundColor: Colors.white,
-        //     )),
-        home: const SplashScreen());
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider.value(value: _themeCubit),
+        BlocProvider(create: (_) => AuthCubit()),
+        BlocProvider(create: (_) => TabCubit()),
+      ],
+      child: BlocSelector<ThemeCubit, ThemeState, bool>(
+        selector: (state) => state.isDarkMode,
+        builder: (context, state) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            scaffoldMessengerKey: DialogX.snackbarKey,
+            title: appName,
+
+            themeMode: state ? ThemeMode.dark : ThemeMode.light,
+
+            darkTheme: _themeCubit.darkTheme,
+
+            //theme
+            theme: _themeCubit.lightTheme,
+            home: const SplashScreen(),
+          );
+        },
+      ),
+    );
   }
 }
 
