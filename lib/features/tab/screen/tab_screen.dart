@@ -1,15 +1,13 @@
 import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../global.dart';
-import '../../feed/data/feed_repository.dart';
-import '../../feed/data/model/feed.dart';
-import '../../feed/screen/feed.dart';
-import '../../profile/screen/profile.dart';
+import '../../add_feed/cubit/add_feed_cubit.dart';
+import '../../feed/screen/feed_screen.dart';
+import '../../profile/screen/profile_screen.dart';
 import '../cubit/tab_cubit.dart';
 import '../widget/bottom_nav.dart';
 import '../widget/lazy_loading_indexed_stack.dart';
@@ -59,19 +57,8 @@ class _TabScreenState extends State<TabScreen> {
         //fab
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            final feed = FeedModel(
-                postId: DateTime.now().millisecondsSinceEpoch.toString(),
-                content:
-                    'Go as far as you can see and once you reach their, you will be able to see further',
-                userId: 'random-user',
-                username: 'random',
-                likesCount: 1,
-                commentsCount: 0,
-                likedByUsers: ['random-user']);
-            FeedRepository.addPost(feed);
-          },
-          child: const Icon(CupertinoIcons.plus, size: 28),
+          onPressed: () => context.read<AddFeedCubit>().showFeedDialog(context),
+          child: const Icon(Icons.create_rounded, size: 28),
         ),
 
         //body

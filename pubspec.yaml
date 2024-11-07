@@ -31,8 +31,12 @@ dependencies:
   # Bloc (State Management)
   bloc: ^8.1.4
   flutter_bloc: ^8.1.6
+
+  # Local storage
   shared_preferences: ^2.3.2
 
+  # Random profile avatars
+  random_avatar: ^0.0.8
   
 dev_dependencies:
   flutter_test:

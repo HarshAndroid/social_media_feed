@@ -122,7 +122,6 @@ class _AuthScreenState extends State<AuthScreen> {
                             state
                                 ? CupertinoIcons.eye_slash
                                 : CupertinoIcons.eye,
-                            color: Theme.of(context).primaryColor,
                             size: 24),
                         onPressed: _c.updateHidePass,
                       ),

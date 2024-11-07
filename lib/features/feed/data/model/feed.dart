@@ -3,6 +3,7 @@ class FeedModel {
   String content;
   String userId;
   String username;
+  String userImage;
   int likesCount;
   int commentsCount;
   List<String> likedByUsers;
@@ -12,6 +13,7 @@ class FeedModel {
     required this.content,
     required this.userId,
     required this.username,
+    required this.userImage,
     required this.likesCount,
     required this.commentsCount,
     required this.likedByUsers,
@@ -23,6 +25,7 @@ class FeedModel {
       content: json['content'] ?? '',
       userId: json['userId'] ?? '',
       username: json['username'] ?? '',
+      userImage: json['userImage'] ?? '',
       likesCount: json['likesCount'] ?? 0,
       commentsCount: json['commentsCount'] ?? 0,
       likedByUsers: List<String>.from(json['likedByUsers'] ?? []),
@@ -35,6 +38,7 @@ class FeedModel {
       'content': content,
       'userId': userId,
       'username': username,
+      'userImage': userImage,
       'likesCount': likesCount,
       'commentsCount': commentsCount,
       'likedByUsers': likedByUsers,
@@ -47,14 +51,12 @@ class CommentModel {
   String userId;
   String username;
   String commentText;
-  String timestamp;
 
   CommentModel({
     required this.commentId,
     required this.userId,
     required this.username,
     required this.commentText,
-    required this.timestamp,
   });
 
   factory CommentModel.fromJson(Map<String, dynamic> json) {
@@ -63,7 +65,6 @@ class CommentModel {
       userId: json['userId'] ?? '',
       username: json['username'] ?? '',
       commentText: json['commentText'] ?? '',
-      timestamp: json['timestamp'] ?? '',
     );
   }
 
@@ -73,7 +74,6 @@ class CommentModel {
       'userId': userId,
       'username': username,
       'commentText': commentText,
-      'timestamp': timestamp,
     };
   }
 }

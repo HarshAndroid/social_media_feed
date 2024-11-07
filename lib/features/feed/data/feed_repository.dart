@@ -4,13 +4,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'model/feed.dart';
 
 class FeedRepository {
-  // For accessing Firestore database
-  static get postsCollection => FirebaseFirestore.instance.collection('posts');
+  static CollectionReference<Map<String, dynamic>> get postsCollection =>
+      FirebaseFirestore.instance.collection('posts');
+
+  // static CollectionReference<Map<String, dynamic>> get commentsCollection =>
+  //     FirebaseFirestore.instance.collection('comments');
 
   static Future<bool> addPost(FeedModel feed) async {
     try {
-      final docRef = await postsCollection.add(feed.toMap());
-      log('Post added with ID: ${docRef.id}');
+      await postsCollection.doc(feed.postId).set(feed.toMap());
+      log('Post added with ID: ${feed.postId}');
       return true;
     } catch (e) {
       log('Error adding post: $e');
@@ -54,7 +57,10 @@ class FeedRepository {
   }
 
   // Add a like to a post
-  static Future<bool> addLike(String postId, String userId) async {
+  static Future<bool> addLike({
+    required String postId,
+    required String userId,
+  }) async {
     try {
       final postRef = postsCollection.doc(postId);
 
@@ -70,7 +76,10 @@ class FeedRepository {
   }
 
   // Remove a like from a post
-  static Future<void> removeLike(String postId, String userId) async {
+  static Future<bool> removeLike({
+    required String postId,
+    required String userId,
+  }) async {
     try {
       final postRef = postsCollection.doc(postId);
 
@@ -78,41 +87,46 @@ class FeedRepository {
         'likesCount': FieldValue.increment(-1),
         'likedByUsers': FieldValue.arrayRemove([userId]),
       });
+
+      return true;
     } catch (e) {
       log('Error removing like: $e');
+      return false;
     }
   }
 
-  static Future<void> addComment(String postId, CommentModel comment) async {
+  static Future<bool> addComment(
+      {required String postId, required CommentModel comment}) async {
     try {
       DocumentReference postRef = postsCollection.doc(postId);
       CollectionReference commentsRef = postRef.collection('comments');
 
       // Add the comment to the comments sub-collection
-      await commentsRef.add(comment.toMap());
+      await commentsRef.doc(comment.commentId).set(comment.toMap());
 
       await postRef.update({
         'commentsCount': FieldValue.increment(1),
       });
+      return true;
     } catch (e) {
       log('Error adding comment: $e');
+      return false;
     }
   }
 
-  static Future<List<CommentModel>> getComments(String postId) async {
-    try {
-      final postRef = postsCollection.doc(postId);
-      final commentsRef = postRef.collection('comments');
+  // static Future<List<CommentModel>> getComments(String postId) async {
+  //   try {
+  //     final postRef = postsCollection.doc(postId).collection('comments');
 
-      QuerySnapshot snapshot = await commentsRef.get();
-      final comments = snapshot.docs
-          .map((doc) =>
-              CommentModel.fromJson(doc.data() as Map<String, dynamic>))
-          .toList();
-      return comments;
-    } catch (e) {
-      log('Error fetching comments: $e');
-      return [];
-    }
-  }
+  //     QuerySnapshot snapshot = await commentsRef.get();
+  //     final comments = snapshot.docs
+  //         .map((doc) =>
+  //             CommentModel.fromJson(doc.data() as Map<String, dynamic>))
+  //         .toList();
+  //     return comments;
+  //   } catch (e) {
+  //     log('Error fetching comments: $e');
+  //     return [];
+  //   }
+  // }
 }

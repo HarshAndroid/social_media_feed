@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../../service/dialog_x.dart';
 import '../../../../service/pref.dart';
 import '../service/auth_service.dart';
-import '../../tab/screen/tab.dart';
+import '../../tab/screen/tab_screen.dart';
 
 part 'auth_state.dart';
 
@@ -83,6 +83,10 @@ class AuthCubit extends Cubit<AuthState> {
       }
       DialogX.success(
           msg: 'You\'ve successfully logged in! Enjoy your experience.');
+
+      try {
+        await AuthService.auth.currentUser?.updatePhotoURL(email);
+      } catch (_) {}
     }
   }
 }

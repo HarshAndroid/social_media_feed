@@ -2,11 +2,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'features/add_feed/cubit/add_feed_cubit.dart';
 import 'features/auth/cubit/auth_cubit.dart';
 import 'features/tab/cubit/tab_cubit.dart';
 import 'firebase_options.dart';
 
-import 'features/splash/screen/splash.dart';
+import 'features/splash/screen/splash_screen.dart';
 import 'global.dart';
 import 'service/dialog_x.dart';
 import 'service/pref.dart';
@@ -47,6 +48,7 @@ class _MyAppState extends State<MyApp> {
         BlocProvider.value(value: _themeCubit),
         BlocProvider(create: (_) => AuthCubit()),
         BlocProvider(create: (_) => TabCubit()),
+        BlocProvider(create: (_) => AddFeedCubit()),
       ],
       child: BlocSelector<ThemeCubit, ThemeState, bool>(
         selector: (state) => state.isDarkMode,

@@ -13,11 +13,7 @@ class TabAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     //list of tab titles
     final tabsTitle = [
-      InkWell(
-          onTap: () {
-            context.read<ThemeCubit>().changeTheme();
-          },
-          child: const Logo(height: 30)),
+      const Text('All Feeds'),
 
       //
       const Text('Profile'),
@@ -27,8 +23,9 @@ class TabAppBar extends StatelessWidget implements PreferredSizeWidget {
       selector: (state) => state.bottomNavIndex,
       builder: (context, state) {
         return AppBar(
-          centerTitle: false,
-          automaticallyImplyLeading: false,
+          // centerTitle: false,
+
+          leading: const Align(child: Logo(height: 28)),
           title: tabsTitle[state],
 
           //actions

@@ -11,14 +11,7 @@ class BottomNav extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomAppBar(
       //curve shape for fab
-      shape: const AutomaticNotchedShape(
-        RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-        ),
-        RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(15)),
-        ),
-      ),
+      shape: const CircularNotchedRectangle(),
 
       //navigation bar
       child: BlocSelector<TabCubit, TabState, int>(

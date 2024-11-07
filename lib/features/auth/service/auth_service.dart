@@ -32,6 +32,7 @@ class AuthService {
           .signInWithEmailAndPassword(email: email, password: password);
 
       log('User logged in successfully: ${credential.user}');
+
       return credential.user != null;
     } catch (e) {
       log('Error logging in user: $e');

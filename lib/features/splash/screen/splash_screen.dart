@@ -4,7 +4,7 @@ import '../../../global.dart';
 import '../../auth/service/auth_service.dart';
 import '../../../widget/logo.dart';
 import '../../auth/screen/auth_screen.dart';
-import '../../tab/screen/tab.dart';
+import '../../tab/screen/tab_screen.dart';
 
 //splash screen
 class SplashScreen extends StatefulWidget {

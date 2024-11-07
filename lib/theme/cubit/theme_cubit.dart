@@ -17,11 +17,15 @@ class ThemeCubit extends Cubit<ThemeState> {
   // light
   get lightTheme => ThemeData(
         primaryColorLight: Colors.black54, // light text color
-        colorSchemeSeed: pColor,
+        // colorSchemeSeed: pColor,
+        useMaterial3: false,
+        primaryColor: pColor,
         appBarTheme: const AppBarTheme(
           centerTitle: true,
+          iconTheme: IconThemeData(color: Colors.black),
           titleTextStyle: TextStyle(fontSize: 19, color: Colors.black),
-          elevation: 3,
+          elevation: 1,
+          color: Colors.white,
         ),
 
         //text field theme
@@ -62,7 +66,9 @@ class ThemeCubit extends Cubit<ThemeState> {
   // dark
   get darkTheme => ThemeData(
         brightness: Brightness.dark,
-        colorSchemeSeed: pColor,
+        // colorSchemeSeed: pColor,
+        primaryColor: pColor,
+        useMaterial3: false,
 
         primaryColorLight: Colors.white70, // light text color
 
