@@ -14,10 +14,10 @@ class ProfileCubit extends Cubit<ProfileState> {
         );
 
   static String get _photo => AuthService.auth.currentUser?.photoURL ?? '';
-  static String get _displayName =>
+  static String get displayName =>
       AuthService.auth.currentUser?.displayName ?? '';
 
-  final nameC = TextEditingController()..text = _displayName;
+  final nameC = TextEditingController();
 
   Future<void> updateProfilePhoto() async {
     final photo = DateTime.now().toIso8601String();
@@ -38,7 +38,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     final user = AuthService.auth.currentUser;
 
     try {
-      if (_displayName != nameC.text) await user?.updateDisplayName(nameC.text);
+      if (displayName != nameC.text) await user?.updateDisplayName(nameC.text);
       if (_photo != state.photo) await user?.updatePhotoURL(state.photo);
 
       if (context.mounted) {

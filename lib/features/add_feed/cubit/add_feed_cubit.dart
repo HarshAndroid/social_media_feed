@@ -54,11 +54,11 @@ class AddFeedCubit extends Cubit<Null> {
     //
     final user = AuthService.auth.currentUser;
 
+    log('display name: ${user?.displayName}');
     if (contentC.text.isEmpty || user == null) return null;
 
     //
 
-    log('display name: ${user.displayName}');
     final feed = FeedModel(
         postId: DateTime.now().millisecondsSinceEpoch.toString(),
         content: contentC.text,

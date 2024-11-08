@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../global.dart';
+import '../../../helper/extension.dart';
 import '../../../widget/profile_avatar.dart';
 import '../../auth/service/auth_service.dart';
 import '../cubit/update/profile_cubit.dart';
@@ -17,6 +18,12 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
+  void initState() {
+    super.initState();
+    context.read<ProfileCubit>().handleOnDispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final user = AuthService.auth.currentUser;
 
@@ -30,7 +37,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               selector: (state) => state.photo,
               builder: (context, state) {
                 return ProfileAvatar(
-                  avatar: state ,
+                  avatar: state,
                   size: mq.height * .15,
                 );
               },
@@ -50,7 +57,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             //
             ...ProfileOption.values.map((e) => ProfileListTile(option: e))
-          ],
+          ].animateList,
         ));
   }
 }

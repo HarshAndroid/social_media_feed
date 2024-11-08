@@ -19,6 +19,12 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
   late final _c = context.read<ProfileCubit>();
 
   @override
+  void initState() {
+    super.initState();
+    _c.nameC.text = ProfileCubit.displayName;
+  }
+
+  @override
   void deactivate() {
     _c.handleOnDispose();
     super.deactivate();
