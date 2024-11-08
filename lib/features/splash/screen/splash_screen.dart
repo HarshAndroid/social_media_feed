@@ -35,6 +35,12 @@ class _SplashScreenState extends State<SplashScreen> {
     mq = MediaQuery.sizeOf(context);
 
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: const Text(
+        'By Harsh Rajpurohit',
+        textAlign: TextAlign.center,
+        style: TextStyle(fontSize: 13, letterSpacing: 1),
+      ),
       //body
       body: SizedBox(
         width: double.maxFinite,

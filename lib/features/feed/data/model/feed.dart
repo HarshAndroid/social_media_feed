@@ -51,12 +51,14 @@ class CommentModel {
   String userId;
   String username;
   String commentText;
+  String userImage;
 
   CommentModel({
     required this.commentId,
     required this.userId,
     required this.username,
     required this.commentText,
+    required this.userImage,
   });
 
   factory CommentModel.fromJson(Map<String, dynamic> json) {
@@ -65,6 +67,7 @@ class CommentModel {
       userId: json['userId'] ?? '',
       username: json['username'] ?? '',
       commentText: json['commentText'] ?? '',
+      userImage: json['userImage'] ?? '',
     );
   }
 
@@ -74,6 +77,7 @@ class CommentModel {
       'userId': userId,
       'username': username,
       'commentText': commentText,
+      'userImage' : userImage,
     };
   }
 }

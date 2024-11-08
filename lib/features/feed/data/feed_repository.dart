@@ -7,9 +7,6 @@ class FeedRepository {
   static CollectionReference<Map<String, dynamic>> get postsCollection =>
       FirebaseFirestore.instance.collection('posts');
 
-  // static CollectionReference<Map<String, dynamic>> get commentsCollection =>
-  //     FirebaseFirestore.instance.collection('comments');
-
   static Future<bool> addPost(FeedModel feed) async {
     try {
       await postsCollection.doc(feed.postId).set(feed.toMap());
@@ -113,20 +110,4 @@ class FeedRepository {
       return false;
     }
   }
-
-  // static Future<List<CommentModel>> getComments(String postId) async {
-  //   try {
-  //     final postRef = postsCollection.doc(postId).collection('comments');
-
-  //     QuerySnapshot snapshot = await commentsRef.get();
-  //     final comments = snapshot.docs
-  //         .map((doc) =>
-  //             CommentModel.fromJson(doc.data() as Map<String, dynamic>))
-  //         .toList();
-  //     return comments;
-  //   } catch (e) {
-  //     log('Error fetching comments: $e');
-  //     return [];
-  //   }
-  // }
 }

@@ -56,7 +56,7 @@ class FeedCard extends StatelessWidget {
 
                   //time
                   Text(
-                    _formatTime(feed.postId),
+                    c.formatTime(feed.postId),
                     style: TextStyle(
                       fontSize: 12,
                       color: sColor,
@@ -129,18 +129,5 @@ class FeedCard extends StatelessWidget {
     );
   }
 
-  String _formatTime(String postId) {
-    DateTime postTime = DateTime.fromMillisecondsSinceEpoch(int.parse(postId));
-    Duration difference = DateTime.now().difference(postTime);
 
-    if (difference.inDays >= 1) {
-      return '${difference.inDays}d ago';
-    } else if (difference.inHours >= 1) {
-      return '${difference.inHours}h ago';
-    } else if (difference.inMinutes >= 1) {
-      return '${difference.inMinutes}m ago';
-    } else {
-      return 'Just now';
-    }
-  }
 }

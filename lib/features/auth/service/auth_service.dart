@@ -41,7 +41,7 @@ class AuthService {
     }
   }
 
-  static Future<bool> logout({bool showDialog = true}) async {
+  static Future<bool> logout() async {
     try {
       // await account.deleteSessions();
       // await Pref.clearDB();
@@ -51,9 +51,7 @@ class AuthService {
       return true;
     } catch (e) {
       log('Error logging out user: $e');
-      if (showDialog) {
-        DialogX.error(msg: e is FirebaseAuthException ? e.message : null);
-      }
+      DialogX.error(msg: e is FirebaseAuthException ? e.message : null);
       return false;
     }
   }

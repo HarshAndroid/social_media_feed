@@ -3,17 +3,17 @@ import 'package:random_avatar/random_avatar.dart';
 
 class ProfileAvatar extends StatelessWidget {
   final String avatar;
-  final double? width, height;
+  final double? size;
 
   const ProfileAvatar(
-      {super.key, required this.avatar, this.width, this.height});
+      {super.key, required this.avatar, this.size});
 
   @override
   Widget build(BuildContext context) {
     return RandomAvatar(
       avatar.isEmpty ? 'test' : avatar,
-      height: height ?? 42,
-      width: width ?? 42,
+      height: size ?? 42,
+      width: size ?? 42,
     );
   }
 }

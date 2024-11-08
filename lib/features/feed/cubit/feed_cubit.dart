@@ -65,9 +65,26 @@ class FeedCubit extends Cubit<FeedModel> {
       userId: userId,
       username: user.displayName ?? '',
       commentText: s,
+      userImage: user.photoURL ?? '',
     );
     //add feed
     return await FeedRepository.addComment(
         postId: state.postId, comment: comment);
+  }
+
+
+   String formatTime(String time) {
+    DateTime postTime = DateTime.fromMillisecondsSinceEpoch(int.parse(time));
+    Duration difference = DateTime.now().difference(postTime);
+
+    if (difference.inDays >= 1) {
+      return '${difference.inDays}d ago';
+    } else if (difference.inHours >= 1) {
+      return '${difference.inHours}h ago';
+    } else if (difference.inMinutes >= 1) {
+      return '${difference.inMinutes}m ago';
+    } else {
+      return 'Just now';
+    }
   }
 }

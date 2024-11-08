@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'features/add_feed/cubit/add_feed_cubit.dart';
 import 'features/auth/cubit/auth_cubit.dart';
+import 'features/profile/cubit/update/profile_cubit.dart';
 import 'features/tab/cubit/tab_cubit.dart';
 import 'firebase_options.dart';
 
@@ -47,6 +48,7 @@ class _MyAppState extends State<MyApp> {
       providers: [
         BlocProvider.value(value: _themeCubit),
         BlocProvider(create: (_) => AuthCubit()),
+        BlocProvider(create: (_) => ProfileCubit()),
         BlocProvider(create: (_) => TabCubit()),
         BlocProvider(create: (_) => AddFeedCubit()),
       ],

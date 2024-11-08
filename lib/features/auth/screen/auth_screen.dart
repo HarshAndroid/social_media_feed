@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../global.dart';
+import '../../../helper/extension.dart';
 import '../../../service/pref.dart';
 import '../../../theme/cubit/theme_cubit.dart';
 import '../../../widget/logo.dart';
@@ -83,7 +84,8 @@ class _AuthScreenState extends State<AuthScreen> {
             horizontal: mq.width * .05,
             vertical: mq.height * .1,
           ),
-          child: Column(children: [
+          child: Column(
+              children: [
             //logo
             const Logo(),
 
@@ -159,6 +161,7 @@ class _AuthScreenState extends State<AuthScreen> {
               },
               style: ElevatedButton.styleFrom(
                 minimumSize: Size(mq.width * .45, 50),
+                shape: const StadiumBorder(),
               ),
               child: BlocSelector<AuthCubit, AuthState, bool>(
                 selector: (state) => state.isNewUser,
@@ -187,7 +190,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 ],
               ),
             ),
-          ]),
+          ].animateList),
         ),
       ),
     );

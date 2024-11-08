@@ -30,37 +30,31 @@ class TabAppBar extends StatelessWidget implements PreferredSizeWidget {
 
           //actions
           actions: [
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                if (state == 0)
-                  IconButton(
-                    splashRadius: 25,
-                    tooltip: 'App Theme',
-                    visualDensity: const VisualDensity(horizontal: -4),
-                    onPressed: () => context.read<ThemeCubit>().changeTheme(),
-                    icon: BlocSelector<ThemeCubit, ThemeState, bool>(
-                      selector: (state) => state.isDarkMode,
-                      builder: (context, state) {
-                        return Padding(
-                          padding: state
-                              ? const EdgeInsets.only(bottom: 2)
-                              : EdgeInsets.zero,
-                          child: Icon(
-                            state
-                                ? CupertinoIcons.moon_stars
-                                : CupertinoIcons.sun_max,
-                            color: state
-                                ? const Color(0xCCFFFFFF)
-                                : const Color(0xCC000000),
-                          ),
-                        );
-                      },
+            IconButton(
+              splashRadius: 25,
+              tooltip: 'App Theme',
+              visualDensity: const VisualDensity(horizontal: -4),
+              onPressed: () => context.read<ThemeCubit>().changeTheme(),
+              icon: BlocSelector<ThemeCubit, ThemeState, bool>(
+                selector: (state) => state.isDarkMode,
+                builder: (context, state) {
+                  return Padding(
+                    padding: state
+                        ? const EdgeInsets.only(bottom: 2)
+                        : EdgeInsets.zero,
+                    child: Icon(
+                      state
+                          ? CupertinoIcons.moon_stars
+                          : CupertinoIcons.sun_max,
+                      color: state
+                          ? const Color(0xCCFFFFFF)
+                          : const Color(0xCC000000),
                     ),
-                  ),
-                const SizedBox(width: 8)
-              ],
+                  );
+                },
+              ),
             ),
+            const SizedBox(width: 8),
           ],
         );
       },
